@@ -3,5 +3,12 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()]
+  plugins: [vue(
+  //   {
+  //   refTransform: true
+  // }
+  )],
+  server:{
+    host:"0.0.0.0"
+  }
 })
