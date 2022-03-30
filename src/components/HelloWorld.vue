@@ -18,10 +18,14 @@ const count = ref(0);
 let isGreen = ref(false);
 let list = ref([1, 2, 3, 4, 5]);
 let todo = ref({ text: 123 });
-const name = reactive({ name: "reactive", count });
+const name = reactive({ name: "reactive", count,a:'12' });
+const todoItem=ref()
 
 function addClick() {
-  if (name.count === 5) watch2();//在count为5时会清除watch2侦听器
+  if (name.count === 5) {
+    watch2();
+    console.log('异步侦听器已清除！');
+  };//在count为5时会清除watch2侦听器
   nextTick(() => {
     // console.log("dom更新完成后的操作", "[isCountThree]:" + isCountThree.value);
   });
@@ -55,13 +59,13 @@ let watchEffect1 = watchEffect(
 );
 
 //异步回调创建一个侦听器，它不会绑定到当前组件上，你必须手动停止它，以防内存泄漏
-function watch2(){}
+let watch2:any;
 setTimeout(() => {
   watch2 = watchEffect(() => {
     console.log(`异步侦听器：${count.value}`);
   });
   // watchEffect1()  //调用该回调函数即可清除侦听器
-}, 5000);
+}, 3000);
 
 /**
  * watch 的第一个参数可以是不同形式的“来源”：
@@ -92,8 +96,9 @@ const isCountThree = computed(() => {
 onMounted(() => {
   // console.log("【onMounted】count:" + count.value);
   console.log("【onMounted】count:" + name.count);
+  console.log('child:'+todoItem.value?.a);
 });
-onUnmounted(() => {});
+onUnmounted(() => {watch2();});
 </script>
 
 <template>
@@ -102,7 +107,7 @@ onUnmounted(() => {});
   <button type="button" @click="addClick">
     {{ name.count }},count is: {{ count }}
   </button>
-  <TodoItem :todo="todo"></TodoItem>
+  <todo-item :todo="todo" ref="todoItem" @changeColor="changeColor"><p>此处为插槽位置</p></todo-item>
   <div class="computed">count等于3：{{ isCountThree }}</div>
 </template>
 
