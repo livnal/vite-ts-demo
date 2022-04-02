@@ -1,4 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import { createVueWait } from 'vue-wait'
 
-createApp(App).mount('#app')
+const VueWait = createVueWait()
+
+createApp(App)
+  .use(VueWait)
+  .mount('#app')
