@@ -12,3 +12,11 @@ Since TypeScript cannot handle type information for `.vue` imports, they are shi
 
 ## vue-wait
 https://github.com/f/vue-wait/blob/master/README.md
+
+## 手动引入了eslint和prettier
+https://juejin.cn/post/7021464780242321439
+根目录创建：
+.eslintrc.js(eslint配置)；
+.eslintignore(配置eslint需要忽略的文件或文件夹)；
+.prettierrc.js(prettier配置)；
+.prettierignore (配置prettier需要忽略的文件或文件夹)；
