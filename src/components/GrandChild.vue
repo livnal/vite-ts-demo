@@ -8,7 +8,7 @@ const attrs = useAttrs()
 const grandCount = 0
 
 onMounted(() => {
-  console.log('attrs1', attrs.a)
+  console.log('attrs1', attrs)
 })
 </script>
 <template>

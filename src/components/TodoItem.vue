@@ -4,13 +4,15 @@
  * @Author: jiaolina
  * @Date: 2022-03-23 15:28:25
  * @LastEditors: jiaolina
- * @LastEditTime: 2022-04-06 15:32:45
+ * @LastEditTime: 2022-04-09 13:40:06
 -->
 <script setup lang="ts">
-import { computed, ref, watchEffect, onMounted } from 'vue'
+import { computed, ref, watchEffect, onMounted, useAttrs, useSlots } from 'vue'
 import VueWait from 'vue-wait'
 import GrandChild from './GrandChild.vue'
 
+const attrs = useAttrs()
+const slots = useSlots()
 const wait = new VueWait()
 // defineProps() 宏中的参数不可以访问 <script setup> 中定义的其他变量，因为在编译时整个表达式都会被移到外部的函数中。
 const props = defineProps<{
@@ -35,7 +37,7 @@ const loading = computed(() => {
 })
 
 onMounted(() => {
-  console.log('wait', wait)
+  console.log('wait和attrs，slots', wait, attrs, slots)
   // wait.start('boxLoad');
 })
 
@@ -61,8 +63,8 @@ defineExpose({
       <h2>child</h2>
       <p>第{{ props.todo?.text }}个item</p>
       <button @click="emit('changeColor')">改变标题颜色</button>
-      <slot />
-      <GrandChild :a="a" />
+      <slot name="todoSlot" msg="此处为todoSlot插槽" :label="a" />
+      <GrandChild :a="a" v-bind="$attrs" />
     </div>
   </v-wait>
 </template>

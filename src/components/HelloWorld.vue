@@ -110,8 +110,14 @@ onUnmounted(() => {
   <button type="button" @click="addClick">
     {{ name.count }},count is: {{ count }}
   </button>
-  <todo-item ref="todoItem" :todo="todo" @changeColor="changeColor"
-    ><p>此处为插槽位置</p></todo-item
+  <todo-item
+    ref="todoItem"
+    :todo="todo"
+    :parent="'hello'"
+    @changeColor="changeColor"
+    ><template #todoSlot="{ msg, label }"
+      ><p>{{ msg }} {{ label }}</p></template
+    ></todo-item
   >
   <div class="computed">count等于3：{{ isCountThree }}</div>
 </template>
