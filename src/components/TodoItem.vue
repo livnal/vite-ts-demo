@@ -4,7 +4,7 @@
  * @Author: jiaolina
  * @Date: 2022-03-23 15:28:25
  * @LastEditors: jiaolina
- * @LastEditTime: 2022-04-21 13:27:03
+ * @LastEditTime: 2022-04-21 16:57:29
 -->
 <script setup lang="ts">
 import { computed, ref, watchEffect, onMounted, useAttrs, useSlots } from 'vue'
@@ -73,5 +73,8 @@ defineExpose({
 .child {
   border: 1px solid black;
   padding: 2px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 </style>
