@@ -9,6 +9,8 @@ import {
   watch,
   onUnmounted,
   onUpdated,
+  provide,
+  readonly,
 } from 'vue'
 // import { $ref } from 'vue/macros'  //响应性语法糖
 import TodoItem from './TodoItem.vue'
@@ -93,6 +95,21 @@ watch(
 const isCountThree = computed(() => {
   return name.count === 3 ? 'Yes' : 'No'
 })
+
+/**
+ * 依赖注入
+ * 当使用响应式 provide/inject 值时，建议尽可能将任何对响应式状态的变更都保持在 provider 内部。
+ * 如果你想确保从 provide 传过来的数据不能被 injector 的组件更改，你可以使用readonly() 来包装提供的值
+ * 
+ * 使用 Symbol 作注入名
+    但如果你正在构建大型的应用程序，包含非常多的依赖供给，或者你正在编写提供给其他开发者使用的组件库，建议最好使用 Symbol 来作为注入名以避免潜在的冲突。建议在一个单独的文件中导出这些注入名 Symbol
+ */
+const provideMsg = ref('hello')
+function updateProvideMsg() {
+  provideMsg.value = 'updateVal'
+}
+provide('provideMsg', { provideMsg, updateProvideMsg })
+provide('provideCount', readonly(count))
 
 onMounted(() => {
   // console.log("【onMounted】count:" + count.value);
