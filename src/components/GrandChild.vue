@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import { ref, useAttrs, onMounted, inject, watchEffect, watch } from 'vue'
+import { useMouse } from '../utils/mouse.js'
 
 // 这里的透传attrs并不是响应式的，不能通过侦听器去监听它的变化；
 // 如果需要响应性，可以使用prop，或者使用onUpdated()使得在每次更新时结合最新的attrs执行副作用
 const attrs = useAttrs()
+
+const { x, y } = useMouse()
 
 const grandCount = 0
 
@@ -28,5 +31,12 @@ onMounted(() => {
       }}
     </p>
     <p>provideCount:{{ provideCount }}</p>
+    <p>鼠标移动：（{{ x }}，{{ y }}）</p>
   </div>
 </template>
+
+<style scoped>
+.grandCild {
+  border: 1px dashed rgb(36, 90, 36);
+}
+</style>
