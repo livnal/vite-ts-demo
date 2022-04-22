@@ -20,3 +20,9 @@ https://juejin.cn/post/7021464780242321439
 .eslintignore(配置eslint需要忽略的文件或文件夹)；
 .prettierrc.js(prettier配置)；
 .prettierignore (配置prettier需要忽略的文件或文件夹)；
+
+## 手动配置“@”路径别名
+http://lavecoral.me/vue/262.html
+安装：npm i @types/node -D
+修改vite.config.js(引入resolve并添加resolve配置)
+修改tsconfig.json(添加compilerOptions)
