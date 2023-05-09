@@ -26,3 +26,7 @@ http://lavecoral.me/vue/262.html
 安装：npm i @types/node -D
 修改vite.config.js(引入resolve并添加resolve配置)
 修改tsconfig.json(添加compilerOptions)
+
+##  引入element-plus
+vue3.0不支持element-ui，需要使用element-plus
+在mine.ts中手动引入
